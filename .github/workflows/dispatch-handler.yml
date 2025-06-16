@@ -1,0 +1,16 @@
+name: Universal Pipeline
+on:
+  repository_dispatch:
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ github.event.client_payload.repository || github.event.repository.full_name }}
+          path: ./app
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - run: chmod +x ./auto-detect.sh && ./auto-detect.sh
+        working-directory: ./app
