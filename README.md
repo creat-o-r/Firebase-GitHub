@@ -13,21 +13,36 @@ This repository implements the three-tier separation pattern from Issue #36:
 ## Directory Structure
 
 ```
-├── github-workflows/                   # GitHub automation and templates
+├── github-workflows/                   # GitHub automation, templates, and workflows
 │   ├── github-issues-workflow.js      # Issue management
 │   ├── github-projects-integration.js # Project management
 │   ├── jules-branch-integration.js    # External branch integration
 │   ├── startup-build-check.js         # Build monitoring
 │   ├── build-health-report.js         # Health analytics
 │   ├── claude-context-helper.js       # Claude integration
-│   └── templates/                     # GitHub templates
-│       ├── issue-templates/           # GitHub issue templates
-│       └── pr-templates/              # GitHub PR templates
+│   ├── templates/                     # GitHub templates
+│   │   ├── issue-templates/           # GitHub issue templates
+│   │   └── pr-templates/              # GitHub PR templates
+│   └── workflows/                     # GitHub Actions workflows
+│       ├── build-monitoring.yml       # Automated build health monitoring
+│       ├── firebase-cleanup.yml       # Deployment cleanup
+│       ├── firebase-deploy.yml        # Production deployment
+│       ├── firebase-preview.yml       # PR preview deployment
+│       └── issues-workflow.yml        # Issue automation
 ├── deployment/                        # Deployment configurations
 │   ├── firebase-configs/              # Firebase configs per environment
+│   │   ├── firebase-prod.json         # Production Firebase hosting config
+│   │   └── .firebaserc                # Firebase project configuration
 │   ├── hosting-configs/               # Hosting configs per environment
+│   │   └── apphosting-prod.yaml       # Production App Hosting config
 │   └── deployment-scripts/            # Deployment automation
-└── docs/                             # Documentation
+│       └── deploy-production.js       # Production deployment script
+└── docs/                             # Documentation and planning
+    ├── CICD-MIGRATION-READY.md        # Migration documentation
+    ├── ISSUE-36-PLAN-A.md             # Issue #36 planning
+    ├── ISSUE-36-SESSION-LOG.md        # Session logs
+    ├── ISSUE-36-TESTING-PROTOCOL.md   # Testing protocol
+    └── cicd-repo-structure.md         # Repository structure docs
 ```
 
 ## Available Commands
