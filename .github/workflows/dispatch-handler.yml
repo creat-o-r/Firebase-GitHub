@@ -1,6 +1,7 @@
 name: Universal Pipeline
 on:
   repository_dispatch:
+  workflow_dispatch:
 
 jobs:
   pipeline:
