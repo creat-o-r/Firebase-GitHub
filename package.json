@@ -1,1 +1,37 @@
-{"name":"barterverse-cicd","scripts":{"issues:report":"node github-issues-workflow.js report","build:status":"node startup-build-check.js"}}
+{
+  "name": "barterverse-cicd",
+  "version": "1.0.0",
+  "description": "CI/CD Infrastructure for BarterVerse - Issue automation, build monitoring, deployment scripts",
+  "scripts": {
+    "issues:report": "node github-workflows/github-issues-workflow.js report",
+    "issues:create": "node github-workflows/github-issues-workflow.js create",
+    "issues:update": "node github-workflows/github-issues-workflow.js update",
+    "issues:start": "node github-workflows/github-issues-workflow.js start",
+    "issues:progress": "node github-workflows/github-issues-workflow.js progress",
+    "issues:auto": "node github-workflows/github-issues-workflow.js auto",
+    "claude:info": "node github-workflows/claude-context-helper.js info",
+    "claude:title": "node github-workflows/claude-context-helper.js title",
+    "claude:setup": "node github-workflows/claude-context-helper.js setup",
+    "projects:create-item-matching": "node github-workflows/github-projects-integration.js create-item-matching",
+    "projects:create-firebase-ai": "node github-workflows/github-projects-integration.js create-firebase-ai",
+    "projects:status": "node github-workflows/github-projects-integration.js status",
+    "projects:link": "node github-workflows/github-projects-integration.js link",
+    "jules:detect": "node github-workflows/jules-branch-integration.js detect",
+    "jules:auto": "node github-workflows/jules-branch-integration.js auto",
+    "jules:integrate": "node github-workflows/jules-branch-integration.js integrate",
+    "jules:check-orphans": "node github-workflows/jules-branch-integration.js check-orphans",
+    "jules:cleanup": "node github-workflows/jules-branch-integration.js cleanup",
+    "build:status": "node github-workflows/startup-build-check.js",
+    "build:health": "node github-workflows/build-health-report.js",
+    "deploy:prod": "node deployment/deployment-scripts/deploy-production.js",
+    "deploy:staging": "node deployment/deployment-scripts/deploy-staging.js",
+    "deploy:dev": "node deployment/deployment-scripts/deploy-development.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/creat-o-r/Firebase-GitHub.git"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0"
+  }
+}
