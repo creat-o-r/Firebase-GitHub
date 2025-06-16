@@ -1,0 +1,1 @@
+{"name":"barterverse-cicd","scripts":{"issues:report":"node github-issues-workflow.js report","build:status":"node startup-build-check.js"}}
