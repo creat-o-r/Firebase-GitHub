@@ -22,10 +22,7 @@
     "jules:check-orphans": "node github-workflows/jules-branch-integration.js check-orphans",
     "jules:cleanup": "node github-workflows/jules-branch-integration.js cleanup",
     "build:status": "node github-workflows/startup-build-check.js",
-    "build:health": "node github-workflows/build-health-report.js",
-    "deploy:prod": "node deployment/deployment-scripts/deploy-production.js",
-    "deploy:staging": "node deployment/deployment-scripts/deploy-staging.js",
-    "deploy:dev": "node deployment/deployment-scripts/deploy-development.js"
+    "build:health": "node github-workflows/build-health-report.js"
   },
   "repository": {
     "type": "git",
