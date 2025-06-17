@@ -1,34 +1,24 @@
 {
-  "name": "barterverse-cicd",
+  "name": "firebase-github-cicd",
   "version": "1.0.0",
-  "description": "CI/CD Infrastructure for BarterVerse - Issue automation, build monitoring, deployment scripts",
+  "description": "Universal CI/CD infrastructure with GitHub App",
+  "main": "github-app/app.js",
   "scripts": {
-    "issues:report": "node github-workflows/github-issues-workflow.js report",
-    "issues:create": "node github-workflows/github-issues-workflow.js create",
-    "issues:update": "node github-workflows/github-issues-workflow.js update",
-    "issues:start": "node github-workflows/github-issues-workflow.js start",
-    "issues:progress": "node github-workflows/github-issues-workflow.js progress",
-    "issues:auto": "node github-workflows/github-issues-workflow.js auto",
-    "claude:info": "node github-workflows/claude-context-helper.js info",
-    "claude:title": "node github-workflows/claude-context-helper.js title",
-    "claude:setup": "node github-workflows/claude-context-helper.js setup",
-    "projects:create-item-matching": "node github-workflows/github-projects-integration.js create-item-matching",
-    "projects:create-firebase-ai": "node github-workflows/github-projects-integration.js create-firebase-ai",
-    "projects:status": "node github-workflows/github-projects-integration.js status",
-    "projects:link": "node github-workflows/github-projects-integration.js link",
-    "jules:detect": "node github-workflows/jules-branch-integration.js detect",
-    "jules:auto": "node github-workflows/jules-branch-integration.js auto",
-    "jules:integrate": "node github-workflows/jules-branch-integration.js integrate",
-    "jules:check-orphans": "node github-workflows/jules-branch-integration.js check-orphans",
-    "jules:cleanup": "node github-workflows/jules-branch-integration.js cleanup",
-    "build:status": "node github-workflows/startup-build-check.js",
-    "build:health": "node github-workflows/build-health-report.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/creat-o-r/Firebase-GitHub.git"
+    "start": "cd github-app && npm start",
+    "dev": "cd github-app && npm run dev",
+    "install-app": "cd github-app && npm install"
   },
   "dependencies": {
-    "dotenv": "^16.5.0"
+    "@octokit/webhooks": "^12.0.0",
+    "@octokit/auth-app": "^6.0.0",
+    "@octokit/rest": "^20.0.0",
+    "express": "^4.18.0",
+    "dotenv": "^16.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }

@@ -70,7 +70,19 @@ fi
 
 if [[ -n "$DEPLOY" ]]; then
     echo "🚀 Deploying to $DEPLOY..."
-    echo "ℹ️ Deployment configured but not implemented in this test"
+    if [[ "$DEPLOY" == "firebase" ]]; then
+        npm install -g firebase-tools
+        firebase deploy --only hosting
+        echo "✅ Deployed to Firebase"
+    elif [[ "$DEPLOY" == "vercel" ]]; then
+        npx vercel --prod --yes
+        echo "✅ Deployed to Vercel"
+    elif [[ "$DEPLOY" == "netlify" ]]; then
+        npx netlify deploy --prod
+        echo "✅ Deployed to Netlify"
+    else
+        echo "ℹ️ Deployment to $DEPLOY not yet implemented"
+    fi
 fi
 
 echo "✅ Pipeline completed!"
