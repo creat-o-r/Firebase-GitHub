@@ -15,5 +15,5 @@ jobs:
           ref: ${{ github.event.client_payload.ref }}
           path: ./app
           token: ${{ secrets.GITHUB_TOKEN }}
-      - run: chmod +x ./auto-detect.sh && ./auto-detect.sh
+      - run: chmod +x ../auto-detect.sh && ../auto-detect.sh
         working-directory: ./app
