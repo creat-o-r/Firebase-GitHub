@@ -14,6 +14,12 @@ const getVar = (name) => process.env[name] || process.env[`RAILWAY_${name}`] || 
 const requiredEnvVars = ['WEBHOOK_SECRET', 'APP_ID', 'PRIVATE_KEY'];
 const missingEnvVars = requiredEnvVars.filter(varName => !getVar(varName));
 
+// Debug: Log available environment variables
+console.log('🔍 Available environment variables:');
+Object.keys(process.env).filter(key => key.includes('WEBHOOK') || key.includes('APP_ID') || key.includes('PRIVATE') || key.includes('shared')).forEach(key => {
+  console.log(`   ${key}: ${key.includes('PRIVATE') ? '[REDACTED]' : process.env[key]?.slice(0, 20)}...`);
+});
+
 if (missingEnvVars.length > 0) {
   console.log('⚠️  Missing required environment variables:', missingEnvVars.join(', '));
   console.log('ℹ️  App running in setup mode - webhook disabled');
