@@ -412,6 +412,20 @@ ${issue.labels.map(l => `- ${l.name}`).join('\n')}
         }
         await this.updateIssue(updateIssueNumber, { body: updateBody });
         break;
+
+      case 'comment':
+        const commentIssueNumber = process.argv[3];
+        const commentBody = process.argv[4];
+        if (!commentIssueNumber || !commentBody) {
+          console.error('Usage: npm run issues:comment <issue-number> <comment-body>');
+          process.exit(1);
+        }
+        await this.makeGitHubRequest(`/repos/${this.repo}/issues/${commentIssueNumber}/comments`, {
+          method: 'POST',
+          body: JSON.stringify({ body: commentBody })
+        });
+        console.log(`✅ Added comment to issue #${commentIssueNumber}`);
+        break;
       
       case 'start':
         const issueNumber = process.argv[3];

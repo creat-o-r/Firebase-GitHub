@@ -7,6 +7,9 @@ on:
 jobs:
   pipeline:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
     steps:
       - uses: actions/checkout@v4
       - uses: actions/checkout@v4
@@ -15,5 +18,5 @@ jobs:
           ref: ${{ github.event.client_payload.ref }}
           path: ./app
           token: ${{ secrets.GITHUB_TOKEN }}
-      - run: chmod +x ../auto-detect.sh && ../auto-detect.sh
+      - run: chmod +x ${{ github.workspace }}/auto-detect.sh && ${{ github.workspace }}/auto-detect.sh
         working-directory: ./app
