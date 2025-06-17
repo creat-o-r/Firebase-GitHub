@@ -9,9 +9,10 @@ require('dotenv').config();
 
 const app = express();
 
-// Check required environment variables
+// Check required environment variables (try both env vars and Railway shared vars)
+const getVar = (name) => process.env[name] || process.env[`RAILWAY_${name}`] || process.env[`shared_${name}`];
 const requiredEnvVars = ['WEBHOOK_SECRET', 'APP_ID', 'PRIVATE_KEY'];
-const missingEnvVars = requiredEnvVars.filter(varName => !process.env[varName]);
+const missingEnvVars = requiredEnvVars.filter(varName => !getVar(varName));
 
 if (missingEnvVars.length > 0) {
   console.log('⚠️  Missing required environment variables:', missingEnvVars.join(', '));
@@ -24,14 +25,14 @@ if (missingEnvVars.length > 0) {
 }
 
 const webhooks = missingEnvVars.length === 0 ? new Webhooks({
-  secret: process.env.WEBHOOK_SECRET,
+  secret: getVar('WEBHOOK_SECRET'),
 }) : null;
 
 // GitHub App authentication
 const auth = missingEnvVars.length === 0 ? createAppAuth({
-  appId: process.env.APP_ID,
-  privateKey: process.env.PRIVATE_KEY,
-  installationId: process.env.INSTALLATION_ID,
+  appId: getVar('APP_ID'),
+  privateKey: getVar('PRIVATE_KEY'),
+  installationId: getVar('INSTALLATION_ID'),
 }) : null;
 
 // Webhook handler for app installation
