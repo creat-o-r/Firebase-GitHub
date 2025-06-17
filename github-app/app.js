@@ -34,12 +34,18 @@ const webhooks = missingEnvVars.length === 0 ? new Webhooks({
   secret: process.env.WEBHOOK_SECRET,
 }) : null;
 
-// GitHub App authentication
-const auth = missingEnvVars.length === 0 ? createAppAuth({
+// GitHub App authentication  
+const authConfig = {
   appId: process.env.APP_ID,
   privateKey: process.env.PRIVATE_KEY,
-  installationId: process.env.INSTALLATION_ID,
-}) : null;
+};
+
+// Only add installationId if it exists
+if (process.env.INSTALLATION_ID) {
+  authConfig.installationId = process.env.INSTALLATION_ID;
+}
+
+const auth = missingEnvVars.length === 0 ? createAppAuth(authConfig) : null;
 
 // Webhook handler for app installation
 if (webhooks) {
