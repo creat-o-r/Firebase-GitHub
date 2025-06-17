@@ -132,7 +132,7 @@ async function setupRepo(octokit, owner, repo) {
 // Express server for webhooks
 app.use(express.json());
 
-if (webhooks) {
+if (webhooks && webhooks.middleware) {
   app.post('/webhook', webhooks.middleware);
 } else {
   app.post('/webhook', (req, res) => {
